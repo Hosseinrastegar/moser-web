@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Vazirmatn", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-hover: var(--brand-accent-hover);
+  --color-brand-bg-start: var(--brand-bg-start);
+  --color-brand-bg-end: var(--brand-bg-end);
+  --color-brand-card: var(--brand-card);
+  --color-brand-border: var(--brand-border);
+  --color-brand-text-primary: var(--brand-text-primary);
+  --color-brand-text-secondary: var(--brand-text-secondary);
+}
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --brand-accent: #4F46E5;
+  --brand-accent-hover: #4338CA;
+  --brand-bg-start: #FFFFFF;
+  --brand-bg-end: #F8F9FA;
+  --brand-card: rgba(255, 255, 255, 0.8);
+  --brand-border: #E2E8F0;
+  --brand-text-primary: #0F172A;
+  --brand-text-secondary: #64748B;
+}
+
+.dark {
+  --brand-accent: #6366F1;
+  --brand-accent-hover: #818CF8;
+  --brand-bg-start: #02020A;
+  --brand-bg-end: #0F0D42;
+  --brand-card: rgba(15, 13, 66, 0.6);
+  --brand-border: rgba(166, 174, 207, 0.15);
+  --brand-text-primary: #FFFFFF;
+  --brand-text-secondary: #CBD5E1;
+}
+
+@layer utilities {
+  .glassmorphism {
+    @apply bg-brand-card backdrop-blur-xl border border-brand-border shadow-2xl;
+  }
+}
+
+/* Custom Scrollbar Styles to remove white edge in Dark Mode */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--brand-bg-start);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-accent);
+}
+

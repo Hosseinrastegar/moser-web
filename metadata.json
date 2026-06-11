@@ -1,0 +1,8 @@
+{
+  "name": "مُصِر وب",
+  "description": "A modern, premium Persian personal portfolio and digital services website with a dark/light mode toggle, dynamic blog section, project portfolio slider, and contact consultation form.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,142 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'motion/react';
+import { Menu, X, Moon, Sun, Layers } from 'lucide-react';
+import { useTheme } from '@/components/ThemeProvider';
+import { cn } from '@/lib/utils';
+
+const navLinks = [
+  { name: 'خانه', href: '/' },
+  { name: 'درباره من', href: '/#about' },
+  { name: 'خدمات', href: '/#services' },
+  { name: 'نمونه‌کارها', href: '/#portfolio' },
+  { name: 'تماس', href: '/#contact' },
+];
+
+export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <header
+      className={cn(
+        'fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b border-transparent',
+        isScrolled
+          ? 'glassmorphism border-t-0 rounded-none py-4 shadow-lg shadow-brand-bg-start/20'
+          : 'bg-transparent py-6'
+      )}
+    >
+      <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-12 h-12 rounded-[1.2rem] bg-brand-accent/20 flex items-center justify-center text-brand-accent font-bold text-xl shadow-lg border border-brand-accent/30 group-hover:scale-105 transition-transform">
+              <Layers className="w-6 h-6" />
+            </div>
+            <span className="font-black text-2xl tracking-tight text-brand-text-primary">
+              مُصِر وب
+            </span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden xl:flex items-center gap-10">
+            <ul className="flex items-center gap-8">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm font-bold text-brand-text-secondary hover:text-brand-accent transition-colors block relative group"
+                  >
+                    {link.name}
+                    <span className="absolute -bottom-1 right-0 w-0 h-0.5 bg-brand-accent group-hover:w-full transition-all duration-300"></span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="flex items-center gap-6 border-r border-brand-border pr-6">
+              {/* بخش تغییر تم دسکتاپ - موقتا کامنت شده
+              <button
+                onClick={toggleTheme}
+                className="w-12 h-12 rounded-[1.2rem] flex items-center justify-center glassmorphism text-brand-text-primary hover:text-brand-accent hover:border-brand-accent/50 transition-colors"
+                aria-label="تغییر تم"
+              >
+                {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+              */}
+              <Link
+                href="/#contact"
+                className="px-8 py-3.5 rounded-[1.2rem] bg-brand-accent hover:bg-brand-accent-hover text-white text-sm font-bold transition-all shadow-[0_0_15px_rgba(58,53,185,0.4)] hover:shadow-[0_0_25px_rgba(58,53,185,0.6)] hover:-translate-y-0.5"
+              >
+                شروع پروژه
+              </Link>
+            </div>
+          </nav>
+
+          {/* Mobile Menu Toggle */}
+          <div className="flex items-center gap-4 xl:hidden">
+            {/*<button
+              onClick={toggleTheme}
+              className="w-12 h-12 rounded-2xl flex items-center justify-center glassmorphism text-brand-text-primary"
+            >
+              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>*/}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-brand-text-primary p-2 focus:outline-none"
+            >
+              {mobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-full left-0 w-full glassmorphism border-t-0 shadow-2xl py-6 flex flex-col xl:hidden border-b-2 border-b-brand-accent rounded-b-[2rem]"
+          >
+            <ul className="flex flex-col px-6 gap-3">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block px-6 py-4 rounded-2xl text-brand-text-primary font-bold hover:bg-brand-accent/10 hover:text-brand-accent transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+              <li className="pt-4 mt-4 border-t border-brand-border">
+                <Link
+                  href="/#contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-center px-6 py-4 rounded-2xl bg-brand-accent text-white font-bold shadow-lg shadow-brand-accent/30"
+                >
+                  شروع پروژه با من
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}
