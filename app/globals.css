@@ -1,9 +1,9 @@
+/* app/globals.css */
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Vazirmatn", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  
   --color-brand-accent: var(--brand-accent);
   --color-brand-accent-hover: var(--brand-accent-hover);
   --color-brand-bg-start: var(--brand-bg-start);
@@ -14,20 +14,7 @@
   --color-brand-text-secondary: var(--brand-text-secondary);
 }
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
-  --brand-accent: #4F46E5;
-  --brand-accent-hover: #4338CA;
-  --brand-bg-start: #FFFFFF;
-  --brand-bg-end: #F8F9FA;
-  --brand-card: rgba(255, 255, 255, 0.8);
-  --brand-border: #E2E8F0;
-  --brand-text-primary: #0F172A;
-  --brand-text-secondary: #64748B;
-}
-
-.dark {
   --brand-accent: #6366F1;
   --brand-accent-hover: #818CF8;
   --brand-bg-start: #02020A;
@@ -35,7 +22,7 @@
   --brand-card: rgba(15, 13, 66, 0.6);
   --brand-border: rgba(166, 174, 207, 0.15);
   --brand-text-primary: #FFFFFF;
-  --brand-text-secondary: #CBD5E1;
+  --brand-text-secondary: #CBD5E1; /* رنگ اصلی - روشن نیست */
 }
 
 @layer utilities {
@@ -44,21 +31,164 @@
   }
 }
 
-/* Custom Scrollbar Styles to remove white edge in Dark Mode */
+/* موبایل/تبلت: فقط حذف بلور، حفظ شفافیت 0.6 */
+@media (max-width: 1024px) {
+  .glassmorphism {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(15, 13, 66, 0.6) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(166, 174, 207, 0.2) inset !important;
+  }
+}
+
+/* انیمیشن‌های دسکتاپ (فقط در عرض ≥ 1024px) */
+@media (min-width: 1024px) {
+  .spin-slow { animation: spin 20s linear infinite; }
+  .spin-medium { animation: spin 15s linear infinite; }
+  .bounce-slow { animation: bounce 4s ease-in-out infinite; }
+  .float { animation: float 5s ease-in-out infinite; }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+}
+
+/* غیرفعال کردن انیمیشن‌های تزئینی در موبایل (اما opacity را زیاد می‌کنیم که محو نشوند) */
+@media (max-width: 1023px) {
+  .spin-slow, .spin-medium, .bounce-slow, .float,
+  [class*="animate-"]:not(.essential-animation) {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  
+  .group:hover .group-hover\:scale-105,
+  .hover\:scale-105:hover,
+  .hover\:-translate-y-1:hover,
+  .hover\:-translate-y-2:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+body {
+  background-attachment: fixed;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: var(--brand-bg-start);
 }
-
 ::-webkit-scrollbar-thumb {
   background: var(--brand-border);
   border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: var(--brand-accent);
 }
 
+/* ===== ANIMATIONS ===== */
+
+@keyframes shimmer-slide {
+  0% { transform: translateX(100%) skewX(-15deg); }
+  100% { transform: translateX(-200%) skewX(-15deg); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+  50% { box-shadow: 0 0 20px 2px rgba(99, 102, 241, 0.12); }
+}
+
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-fade-left {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Skill bars — شروع از صفر، JS مستقیم width رو ست میکنه */
+.skill-bar-fill {
+  width: 0;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hero animations — همه دستگاه‌ها */
+.hero-item {
+  opacity: 0;
+  animation: hero-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--hero-delay, 0ms);
+}
+
+.hero-image {
+  opacity: 0;
+  animation: hero-fade-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+/* Shimmer و Glow — فقط دسکتاپ */
+@media (min-width: 1024px) {
+  .icon-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .icon-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255,255,255,0.08) 50%,
+      transparent 60%
+    );
+    transform: translateX(100%) skewX(-15deg);
+  }
+  .group:hover .icon-shimmer::after {
+    animation: shimmer-slide 0.6s ease forwards;
+  }
+
+  .accent-divider {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+}
+
+/* موبایل — hero فاصله کمتر */
+@media (max-width: 1023px) {
+  @keyframes hero-fade-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes hero-fade-left {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-item,
+  .hero-image {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+  .icon-shimmer::after,
+  .accent-divider {
+    animation: none !important;
+  }
+  .skill-bar-fill {
+    transition: none !important;
+  }
+}
