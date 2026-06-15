@@ -23,7 +23,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Preload تصویر هیرو برای LCP */}
         <link rel="preload" as="image" href="/img/hossein_moser.webp" fetchPriority="high" />
       </head>
       <body className={`${vazirmatn.variable} font-sans bg-gradient-to-br from-brand-bg-start to-brand-bg-end min-h-screen text-brand-text-primary antialiased overflow-x-hidden`}>

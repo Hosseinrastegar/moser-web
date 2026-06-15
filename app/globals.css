@@ -22,7 +22,7 @@
   --brand-card: rgba(15, 13, 66, 0.6);
   --brand-border: rgba(166, 174, 207, 0.15);
   --brand-text-primary: #FFFFFF;
-  --brand-text-secondary: #CBD5E1; /* رنگ اصلی - روشن نیست */
+  --brand-text-secondary: #CBD5E1; 
 }
 
 @layer utilities {
@@ -31,7 +31,6 @@
   }
 }
 
-/* موبایل/تبلت: فقط حذف بلور، حفظ شفافیت 0.6 */
 @media (max-width: 1024px) {
   .glassmorphism {
     backdrop-filter: none !important;
@@ -41,7 +40,6 @@
   }
 }
 
-/* انیمیشن‌های دسکتاپ (فقط در عرض ≥ 1024px) */
 @media (min-width: 1024px) {
   .spin-slow { animation: spin 20s linear infinite; }
   .spin-medium { animation: spin 15s linear infinite; }
@@ -62,7 +60,6 @@
   }
 }
 
-/* غیرفعال کردن انیمیشن‌های تزئینی در موبایل (اما opacity را زیاد می‌کنیم که محو نشوند) */
 @media (max-width: 1023px) {
   .spin-slow, .spin-medium, .bounce-slow, .float,
   [class*="animate-"]:not(.essential-animation) {
@@ -98,8 +95,7 @@ body {
   background: var(--brand-accent);
 }
 
-/* ===== ANIMATIONS ===== */
-
+/* --- ANIMATIONS --- */
 @keyframes shimmer-slide {
   0% { transform: translateX(100%) skewX(-15deg); }
   100% { transform: translateX(-200%) skewX(-15deg); }
@@ -120,13 +116,11 @@ body {
   to { opacity: 1; transform: translateX(0); }
 }
 
-/* Skill bars — شروع از صفر، JS مستقیم width رو ست میکنه */
 .skill-bar-fill {
   width: 0;
   transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hero animations — همه دستگاه‌ها */
 .hero-item {
   opacity: 0;
   animation: hero-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -138,7 +132,6 @@ body {
   animation: hero-fade-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
 }
 
-/* Shimmer و Glow — فقط دسکتاپ */
 @media (min-width: 1024px) {
   .icon-shimmer {
     position: relative;
@@ -165,7 +158,6 @@ body {
   }
 }
 
-/* موبایل — hero فاصله کمتر */
 @media (max-width: 1023px) {
   @keyframes hero-fade-up {
     from { opacity: 0; transform: translateY(14px); }
@@ -177,7 +169,6 @@ body {
   }
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .hero-item,
   .hero-image {

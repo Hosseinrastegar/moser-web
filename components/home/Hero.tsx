@@ -6,7 +6,6 @@ import { ArrowLeft, Code2, LineChart, CheckCircle2 } from 'lucide-react';
 export default function Hero() {
   return (
     <section id="home" className="relative pt-28 pb-16 lg:pt-36 lg:pb-32 overflow-hidden w-full">
-      {/* SVG تزئینی */}
       <div className="absolute top-20 right-10 opacity-[0.05] pointer-events-none">
         <svg className="spin-medium" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
           <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
@@ -18,7 +17,6 @@ export default function Hero() {
         </svg>
       </div>
 
-      {/* Glow پس‌زمینه */}
       <div className="absolute top-0 right-0 w-full h-[500px] overflow-hidden -z-10 pointer-events-none">
         <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[150%] rounded-full bg-brand-accent/20 blur-[150px] opacity-70" />
         <div className="absolute top-[10%] left-[-10%] w-[40%] h-[120%] rounded-full bg-indigo-500/10 blur-[150px] opacity-50" />
@@ -27,7 +25,6 @@ export default function Hero() {
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
 
-          {/* ستون متن */}
           <div className="flex flex-col space-y-8 items-center lg:items-start text-center lg:text-right order-2 lg:order-1">
 
             <div className="hero-item" style={{ '--hero-delay': '0ms' } as React.CSSProperties}>
@@ -80,7 +77,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* ستون عکس */}
           <div className="hero-image relative lg:h-[600px] flex items-center justify-center order-1 lg:order-2">
             <div className="relative w-full max-w-md aspect-[4/5] rounded-[3rem] overflow-hidden glassmorphism border-[3px] border-brand-border/50">
               <Image

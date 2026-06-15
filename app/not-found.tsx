@@ -27,7 +27,6 @@ export default function NotFound() {
 
       <div className="text-center flex flex-col items-center gap-8 hero-item" style={{ '--hero-delay': '0ms' } as React.CSSProperties}>
 
-        {/* عدد ۴۰۴ */}
         <div className="relative">
           <span className="text-[8rem] sm:text-[12rem] font-black leading-none select-none"
             style={{
@@ -47,7 +46,6 @@ export default function NotFound() {
           </div>
         </div>
 
-        {/* متن */}
         <div className="space-y-4 hero-item" style={{ '--hero-delay': '150ms' } as React.CSSProperties}>
           <h1 className="text-2xl sm:text-4xl font-black text-brand-text-primary">
             صفحه‌ای <span className="text-brand-accent">پیدا نشد</span>
@@ -57,7 +55,6 @@ export default function NotFound() {
           </p>
         </div>
 
-        {/* دکمه‌ها */}
         <div className="flex flex-wrap items-center justify-center gap-4 hero-item" style={{ '--hero-delay': '300ms' } as React.CSSProperties}>
           <Link
             href="/"

@@ -109,9 +109,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-
-
-                {/* بخش تغییر تم دسکتاپ - موقتا کامنت شده
-                { name: 'آموزش برنامه‌نویسی', href: '/programming-tutorials' },
-                { name: 'آموزش سئو', href: '/seo-tutorials' }, */}

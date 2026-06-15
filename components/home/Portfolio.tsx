@@ -32,7 +32,6 @@ export default function Portfolio({ portfolios }: PortfolioProps) {
 
   return (
     <section id="portfolio" className="py-20 md:py-28 relative border-t border-brand-border/50 overflow-hidden">
-      {/* SVG تزئینی (فقط در دسکتاپ متحرک) */}
       <div className="absolute top-10 right-20 opacity-[0.04] pointer-events-none">
         <svg className="spin-slow" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
           <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
@@ -42,7 +41,6 @@ export default function Portfolio({ portfolios }: PortfolioProps) {
       </div>
 
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* هدر سکشن */}
         <div className="flex flex-col items-center mb-20 text-center">
           <FadeIn direction="up" distance={20}>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glassmorphism mb-6">
@@ -59,7 +57,6 @@ export default function Portfolio({ portfolios }: PortfolioProps) {
           </FadeIn>
         </div>
 
-        {/* گرید کارت‌ها */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {portfolios.map((project, idx) => (
             <FadeIn key={project.id} direction="up" distance={30} delay={idx * 80} className="h-full">
@@ -103,7 +100,6 @@ export default function Portfolio({ portfolios }: PortfolioProps) {
         </div>
       </div>
 
-      {/* ========== مودال نمایش پروژه (بهینه برای موبایل و تبلت با hover روی دکمه‌ها) ========== */}
       {selectedProject && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 md:p-6"
@@ -114,7 +110,6 @@ export default function Portfolio({ portfolios }: PortfolioProps) {
             className="relative w-full max-w-4xl glassmorphism rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-2xl flex flex-col max-h-[95vh] sm:max-h-[90vh] border border-brand-border/50"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* هدر مودال */}
             <div className="flex items-center justify-between p-4 sm:p-6 md:p-8 border-b border-brand-border/50">
               <h3 className="text-lg sm:text-2xl md:text-3xl font-bold text-brand-text-primary text-right line-clamp-2">
                 {selectedProject.title}
@@ -128,9 +123,7 @@ export default function Portfolio({ portfolios }: PortfolioProps) {
               </button>
             </div>
 
-            {/* بدنه مودال (اسکرول‌دار) */}
             <div className="overflow-y-auto p-4 sm:p-6 md:p-8 flex-1 text-right">
-              {/* بخش تصویر با اسلایدر */}
               <div className="relative w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden glassmorphism mb-6 sm:mb-8 border border-brand-border bg-black/30">
                 <div className="relative" style={{ aspectRatio: '16/9', maxHeight: '50vh' }}>
                   <Image
@@ -175,7 +168,6 @@ export default function Portfolio({ portfolios }: PortfolioProps) {
                 )}
               </div>
 
-              {/* توضیحات و تکنولوژی‌ها */}
               <div className="space-y-6 sm:space-y-8">
                 <div>
                   <h4 className="flex items-center gap-2 sm:gap-3 text-base sm:text-lg font-bold text-brand-text-primary mb-3 sm:mb-4">
@@ -209,7 +201,6 @@ export default function Portfolio({ portfolios }: PortfolioProps) {
               </div>
             </div>
 
-            {/* فوتر مودال با دکمه‌ها (افکت hover اضافه شده) */}
             <div className="p-4 sm:p-6 md:p-8 border-t border-brand-border/50 flex justify-end gap-3 sm:gap-4 bg-brand-bg-start/30">
               <button
                 onClick={() => setSelectedProject(null)}

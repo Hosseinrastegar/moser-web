@@ -26,7 +26,6 @@ export default function About() {
       bar.style.width = target;
     };
 
-    // موبایل یا reduced motion: فوری بدون transition
     if (prefersReduced || window.innerWidth < 1024) {
       bars.forEach((bar) => {
         bar.style.transition = 'none';
@@ -35,7 +34,6 @@ export default function About() {
       return;
     }
 
-    // دسکتاپ: scroll-triggered با transition
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
